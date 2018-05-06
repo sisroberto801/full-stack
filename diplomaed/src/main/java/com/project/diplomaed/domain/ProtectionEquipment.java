@@ -16,8 +16,14 @@ public class ProtectionEquipment {
     @Column(name = "protection_equipment_id")
     private Long id;
 
-    @Column(name = "name_equipment")
-    private String nameEquipment;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "serial_number")
+    private String serialNumber;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "register_date")
     private Date registerDate;
@@ -43,12 +49,28 @@ public class ProtectionEquipment {
         this.id = id;
     }
 
-    public String getNameEquipment() {
-        return nameEquipment;
+    public String getName() {
+        return name;
     }
 
-    public void setNameEquipment(String nameEquipment) {
-        this.nameEquipment = nameEquipment;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getRegisterDate() {

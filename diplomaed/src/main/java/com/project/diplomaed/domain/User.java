@@ -29,7 +29,7 @@ public class User implements Serializable{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<RoleAssignment> roleAssignments;
 
-    @OneToOne(cascade = CascadeType.ALL) //@OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToOne
     @JoinColumn(name = "person_id")
     @JsonIgnore
     private Person person;

@@ -30,11 +30,11 @@ public class ProtectionEquipmentAssignment implements Serializable{
     @JsonIgnore
     private Person person;
 
-    @Column(name = "equipment_allocation_date")
-    private Date equipmentAllocationDate;
+    @Column(name = "allocation_date")
+    private Date allocationDate;
 
-    @Column(name = "equipment_return_date")
-    private Date equipmentReturnDate;
+    @Column(name = "devolution_date")
+    private Date devolutionDate;
 
     @Column(name = "amount")
     private Integer amount;
@@ -63,20 +63,20 @@ public class ProtectionEquipmentAssignment implements Serializable{
         this.person = person;
     }
 
-    public Date getEquipmentAllocationDate() {
-        return equipmentAllocationDate;
+    public Date getAllocationDate() {
+        return allocationDate;
     }
 
-    public void setEquipmentAllocationDate(Date equipmentAllocationDate) {
-        this.equipmentAllocationDate = equipmentAllocationDate;
+    public void setAllocationDate(Date allocationDate) {
+        this.allocationDate = allocationDate;
     }
 
-    public Date getEquipmentReturnDate() {
-        return equipmentReturnDate;
+    public Date getDevolutionDate() {
+        return devolutionDate;
     }
 
-    public void setEquipmentReturnDate(Date equipmentReturnDate) {
-        this.equipmentReturnDate = equipmentReturnDate;
+    public void setDevolutionDate(Date devolutionDate) {
+        this.devolutionDate = devolutionDate;
     }
 
     public Integer getAmount() {

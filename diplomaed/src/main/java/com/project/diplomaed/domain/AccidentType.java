@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author rOlguin
+ * Created by Administrator on 5/5/2018.
  */
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "accident_type")
+public class AccidentType {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "role_id")
+    @Column(name = "accident_type_id")
     private Long id;
 
     @Column(name = "name")
@@ -22,11 +22,11 @@ public class Role {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private List<RoleAssignment> roleAssignments;
+    @OneToMany(mappedBy = "accidentType", cascade = CascadeType.ALL)
+    private List<AccidentRegistry> accidentRegistries;
 
-    public Role() {
-        this.roleAssignments = new ArrayList<RoleAssignment>();
+    public AccidentType(){
+        this.accidentRegistries = new ArrayList<AccidentRegistry>();
     }
 
     public Long getId() {
@@ -53,12 +53,11 @@ public class Role {
         this.description = description;
     }
 
-    public List<RoleAssignment> getRoleAssignments() {
-        return roleAssignments;
+    public List<AccidentRegistry> getAccidentRegistries() {
+        return accidentRegistries;
     }
 
-    public void setRoleAssignments(List<RoleAssignment> roleAssignments) {
-        this.roleAssignments = roleAssignments;
+    public void setAccidentRegistries(List<AccidentRegistry> accidentRegistries) {
+        this.accidentRegistries = accidentRegistries;
     }
 }
-

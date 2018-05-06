@@ -5,34 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author rOlguin
+ * Created by Administrator on 5/5/2018.
  */
 @Entity
-@Table(name = "area")
-public class Area {
-
+@Table(name = "accident_form")
+public class AccidentForm {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "area_id")
+    @Column(name = "accident_form_id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "code")
+    private String code;
 
     @Column(name = "description")
     private String description;
 
-	@Column(name = "status")
-    private Boolean status;
-	
-    @OneToMany(mappedBy = "area", cascade = CascadeType.ALL)
-    private List<WorkAssignment> workAssignments;
-
-    @OneToMany(mappedBy = "area", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "accidentForm", cascade = CascadeType.ALL)
     private List<AccidentRegistry> accidentRegistries;
 
-    public Area() {
-        this.workAssignments = new ArrayList<WorkAssignment>();
+    public AccidentForm(){
         this.accidentRegistries = new ArrayList<AccidentRegistry>();
     }
 
@@ -44,12 +36,12 @@ public class Area {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -60,22 +52,6 @@ public class Area {
         this.description = description;
     }
 
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    public List<WorkAssignment> getWorkAssignments() {
-        return workAssignments;
-    }
-
-    public void setWorkAssignments(List<WorkAssignment> workAssignments) {
-        this.workAssignments = workAssignments;
-    }
-
     public List<AccidentRegistry> getAccidentRegistries() {
         return accidentRegistries;
     }
@@ -84,4 +60,3 @@ public class Area {
         this.accidentRegistries = accidentRegistries;
     }
 }
-

@@ -19,6 +19,9 @@ public class Charge {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "status")
     private Boolean status;
 
@@ -45,12 +48,12 @@ public class Charge {
         this.name = name;
     }
 
-    public List<WorkAssignment> getWorkAssignments() {
-        return workAssignments;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWorkAssignments(List<WorkAssignment> workAssignments) {
-        this.workAssignments = workAssignments;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Boolean getStatus() {
@@ -59,6 +62,14 @@ public class Charge {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public List<WorkAssignment> getWorkAssignments() {
+        return workAssignments;
+    }
+
+    public void setWorkAssignments(List<WorkAssignment> workAssignments) {
+        this.workAssignments = workAssignments;
     }
 }
 
