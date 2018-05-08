@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -55,10 +56,14 @@ public class UserController {
     public static class UserRequestDTO{
         private String firstName;
         private String lastName;
+        private String lastName2;
+        private Date birthdate;
+        private Integer dni;
         private String email;
+        private Integer phone;
         private String userName;
         private String password;
-        private String status;
+        private Boolean status;
 
         public String getFirstName() {
             return firstName;
@@ -76,12 +81,44 @@ public class UserController {
             this.lastName = lastName;
         }
 
+        public String getLastName2() {
+            return lastName2;
+        }
+
+        public void setLastName2(String lastName2) {
+            this.lastName2 = lastName2;
+        }
+
+        public Date getBirthdate() {
+            return birthdate;
+        }
+
+        public void setBirthdate(Date birthdate) {
+            this.birthdate = birthdate;
+        }
+
+        public Integer getDni() {
+            return dni;
+        }
+
+        public void setDni(Integer dni) {
+            this.dni = dni;
+        }
+
         public String getEmail() {
             return email;
         }
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public Integer getPhone() {
+            return phone;
+        }
+
+        public void setPhone(Integer phone) {
+            this.phone = phone;
         }
 
         public String getUserName() {
@@ -100,11 +137,11 @@ public class UserController {
             this.password = password;
         }
 
-        public String getStatus() {
+        public Boolean getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(Boolean status) {
             this.status = status;
         }
     }
