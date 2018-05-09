@@ -89,5 +89,13 @@ public class User implements Serializable{
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    public List<ProtectionEquipmentAssignment> getProtectionEquipmentAssignments() {
+        return protectionEquipmentAssignments;
+    }
+
+    public void setProtectionEquipmentAssignments(List<ProtectionEquipmentAssignment> protectionEquipmentAssignments) {
+        this.protectionEquipmentAssignments = protectionEquipmentAssignments;
+    }
 }
 

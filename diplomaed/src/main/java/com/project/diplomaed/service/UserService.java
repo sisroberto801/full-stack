@@ -2,9 +2,9 @@ package com.project.diplomaed.service;
 
 import com.project.diplomaed.domain.Person;
 import com.project.diplomaed.domain.User;
+import com.project.diplomaed.dto.UserDTO;
 import com.project.diplomaed.repository.PersonRepository;
 import com.project.diplomaed.repository.UserRepository;
-import com.project.diplomaed.web.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +27,10 @@ public class UserService {
     }
 
     @Transactional
-    public void addUser(UserController.UserRequestDTO user){
-        personRepository.save(changeDTOToObject(new User(),new Person(),user));
+    public User addUser(UserDTO userDTO){
+        Person person = changeDTOToObject(new User(),new Person(), userDTO);
+        personRepository.save(person);
+        return person.getUser();
     }
 
     @Transactional
@@ -37,12 +39,12 @@ public class UserService {
     }
 
     @Transactional
-    public void updateByUserIdByUser(Long userId,UserController.UserRequestDTO userRequestDTO){
+    public void updateByUserIdByUser(Long userId,UserDTO userDTO){
         User user = userRepository.findOne(userId);
         Person person = personRepository.findOne(user.getPerson().getId());
         personRepository.save(changeDTOToObject(user
                 ,person
-                ,userRequestDTO)
+                , userDTO)
         );
     }
 
@@ -51,21 +53,12 @@ public class UserService {
     }
 
 
-    private Person changeDTOToObject(User user,Person person,UserController.UserRequestDTO userRequestDTO){
-        person.setFirstName(userRequestDTO.getFirstName());
-        person.setLastName(userRequestDTO.getLastName());
-        person.setLastName2(userRequestDTO.getLastName2());
-        person.setBirthdate(userRequestDTO.getBirthdate());
-        person.setDni(userRequestDTO.getDni());
-        person.setEmail(userRequestDTO.getEmail());
-        person.setPhone(userRequestDTO.getPhone());
-
+    private Person changeDTOToObject(User user,Person person,UserDTO userDTO){
         user.setPerson(person);
-        user.setUserName(userRequestDTO.getUserName());
-        user.setPassword(userRequestDTO.getPassword());
-        user.setStatus(userRequestDTO.getStatus());
+        user.setUserName(userDTO.getUserName());
+        user.setPassword(userDTO.getPassword());
+        user.setStatus(userDTO.getStatus());
         person.setUser(user);
-
         return person;
     }
 }

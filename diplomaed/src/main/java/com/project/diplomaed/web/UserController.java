@@ -1,6 +1,7 @@
 package com.project.diplomaed.web;
 
 import com.project.diplomaed.domain.User;
+import com.project.diplomaed.dto.UserDTO;
 import com.project.diplomaed.service.UserService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public ResponseEntity addUser(@RequestBody UserRequestDTO user){
-        userService.addUser(user);
-        return  new ResponseEntity(HttpStatus.CREATED);
+    public User addUser(@RequestBody UserDTO userDTO){
+        return userService.addUser(userDTO);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@PathVariable Long id,@RequestBody UserRequestDTO userRequestDTO){
-        userService.updateByUserIdByUser(id,userRequestDTO);
+    public ResponseEntity updateUser(@PathVariable Long id,@RequestBody UserDTO userDTO){
+        userService.updateByUserIdByUser(id, userDTO);
         return  new ResponseEntity(HttpStatus.OK);
     }
 
@@ -53,7 +53,7 @@ public class UserController {
 
 
 
-    public static class UserRequestDTO{
+    public static class UserPersonDTO{
         private String firstName;
         private String lastName;
         private String lastName2;
@@ -61,8 +61,6 @@ public class UserController {
         private Integer dni;
         private String email;
         private Integer phone;
-        private String userName;
-        private String password;
         private Boolean status;
 
         public String getFirstName() {
@@ -119,22 +117,6 @@ public class UserController {
 
         public void setPhone(Integer phone) {
             this.phone = phone;
-        }
-
-        public String getUserName() {
-            return userName;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
         }
 
         public Boolean getStatus() {
