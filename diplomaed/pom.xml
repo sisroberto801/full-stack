@@ -48,6 +48,29 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
+		 <!--https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl-->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.10</version>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.codehaus.jackson</groupId>-->
+			<!--<artifactId>jackson-core-asl</artifactId>-->
+			<!--<version>1.9.10</version>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-databind</artifactId>-->
+			<!--<version>2.2.2</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.fasterxml.jackson.core</groupId>-->
+			<!--<artifactId>jackson-databind</artifactId>-->
+			<!--<version>2.2.2</version>-->
+		<!--</dependency>-->
+
 		<!--h2database database temporary-->
 		<dependency>
 			<groupId>com.h2database</groupId>

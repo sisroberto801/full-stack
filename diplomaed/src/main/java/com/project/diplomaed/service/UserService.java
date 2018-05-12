@@ -61,4 +61,9 @@ public class UserService {
         person.setUser(user);
         return person;
     }
+
+
+    public User findUserByUserNameByPassword(String userName, String password){
+        return userRepository.findUserByUserNameByPassword(userName,password);
+    }
 }

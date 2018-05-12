@@ -1,5 +1,6 @@
 package com.project.diplomaed.web;
 
+import com.project.diplomaed.common.BuildResponse;
 import com.project.diplomaed.domain.User;
 import com.project.diplomaed.dto.UserDTO;
 import com.project.diplomaed.service.UserService;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author rOlguin
@@ -23,9 +26,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BuildResponse buildResponse;
+
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public List<User> getUsers(){
-        return userService.getAllUsers();
+    public BuildResponse getUsers(){
+        List<User> list = userService.getAllUsers();
+        try {
+            buildResponse.clean();
+            buildResponse.setResult(userService.getAllUsers());
+            buildResponse.setStatus("ok");
+            buildResponse.setTotal(list.size());
+            buildResponse.setSuccess("true");
+        } catch (Exception e) {
+            buildResponse.clean();
+            buildResponse.setStatus("Error getting Advanced Search lookup data.");
+            buildResponse.setSuccess("false");
+            logger.error("Error while executing getLKAccInternalUseDataCode", e);
+        }
+        return buildResponse;
     }
 
     @RequestMapping(value = "/",method = RequestMethod.POST)
@@ -50,82 +69,19 @@ public class UserController {
         return  new ResponseEntity(HttpStatus.OK);
     }
 
-
-
-
-    public static class UserPersonDTO{
-        private String firstName;
-        private String lastName;
-        private String lastName2;
-        private Date birthdate;
-        private Integer dni;
-        private String email;
-        private Integer phone;
-        private Boolean status;
-
-        public String getFirstName() {
-            return firstName;
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public BuildResponse getUserByUserNameByPassword(@RequestBody UserDTO userDTO){
+        try {
+            buildResponse.clean();
+            buildResponse.setResult(userService.findUserByUserNameByPassword(userDTO.getUserName(),userDTO.getPassword()));
+            buildResponse.setStatus("ok");
+            buildResponse.setSuccess("true");
+        } catch (Exception e) {
+            buildResponse.clean();
+            buildResponse.setStatus("Error getting Advanced Search lookup data.");
+            buildResponse.setSuccess("false");
+            logger.error("Error while executing getLKAccInternalUseDataCode", e);
         }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public String getLastName2() {
-            return lastName2;
-        }
-
-        public void setLastName2(String lastName2) {
-            this.lastName2 = lastName2;
-        }
-
-        public Date getBirthdate() {
-            return birthdate;
-        }
-
-        public void setBirthdate(Date birthdate) {
-            this.birthdate = birthdate;
-        }
-
-        public Integer getDni() {
-            return dni;
-        }
-
-        public void setDni(Integer dni) {
-            this.dni = dni;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public Integer getPhone() {
-            return phone;
-        }
-
-        public void setPhone(Integer phone) {
-            this.phone = phone;
-        }
-
-        public Boolean getStatus() {
-            return status;
-        }
-
-        public void setStatus(Boolean status) {
-            this.status = status;
-        }
+        return buildResponse;
     }
-
 }
